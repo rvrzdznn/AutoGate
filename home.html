@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <img src="autogatelogo.png" alt="Logo" class="logo">
+  <h2 id="greeting">Hi!</h2>
+  <a href="request.html"><button>Request Pass</button></a>
+
+  <footer>
+    <button id="nav-home">🏠</button>
+    <button id="nav-account">👤</button>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const name = localStorage.getItem('username') || 'there';
+    document.getElementById('greeting').innerText = `Hi ${name}! What can we do for you today?`;
+    initFooterNavigation();
+  </script>
+</body>
+</html>

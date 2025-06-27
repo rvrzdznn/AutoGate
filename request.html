@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request Pass</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>REQUEST PASS FORM</h2>
+  <form id="passForm">
+    <input type="text" placeholder="Full name" required>
+    <input type="text" placeholder="ID number" required>
+    <select required>
+      <option value="">Select vehicle</option>
+      <option>Car</option>
+      <option>Motorcycle</option>
+    </select>
+    <input type="text" placeholder="Plate number" required>
+    <input type="date" required>
+    <input type="time" required>
+    <input type="text" placeholder="Purpose" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <footer>
+    <button id="nav-home">🏠</button>
+    <button id="nav-account">👤</button>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("passForm").addEventListener("submit", handleFormSubmission);
+    initFooterNavigation();
+  </script>
+</body>
+</html>
