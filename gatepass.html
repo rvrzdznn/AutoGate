@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gate Pass</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .gate-pass-card {
+      background: #ffffff;
+      width: 360px;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      border: 2px solid #d0d6e2;
+    }
+
+    .gate-pass-card h2 {
+      text-align: center;
+      color: #222;
+      margin-bottom: 1.5rem;
+    }
+
+    .gate-pass-card p {
+      font-size: 1rem;
+      margin: 0.8rem 0;
+      color: #333;
+    }
+
+    .gate-pass-card span {
+      font-weight: 600;
+    }
+
+    .gate-pass-card button {
+      width: 100%;
+      margin-top: 2rem;
+      padding: 0.7rem;
+      font-size: 1rem;
+      background: #0d6efd;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .gate-pass-card button:hover {
+      background: #084dbf;
+    }
+  </style>
+</head>
+<body>
+  <div class="gate-pass-card">
+    <h2>Vehicle Gate Pass</h2>
+    <p><strong>Name:</strong> <span id="gp-name"></span></p>
+    <p><strong>ID Number:</strong> <span id="gp-id"></span></p>
+    <p><strong>Purpose:</strong> <span id="gp-purpose"></span></p>
+    <p><strong>Date of Visit:</strong> <span id="gp-date"></span></p>
+    <p><strong>Time:</strong> <span id="gp-time"></span></p>
+    <p><strong>Valid Until:</strong> <span id="gp-validity"></span></p>
+
+    <button onclick="window.print()">Print Gate Pass</button>
+  </div>
+
+  <script>
+  const data = JSON.parse(localStorage.getItem('gatePassData') || {});
+  document.getElementById('gp-name').innerText = data.name || 'N/A';
+  document.getElementById('gp-id').innerText = data.idNumber || 'N/A';
+  document.getElementById('gp-purpose').innerText = data.purpose || 'N/A';
+  document.getElementById('gp-date').innerText = data.date || 'N/A';
+  document.getElementById('gp-time').innerText = data.time || 'N/A';
+
+  // Calculate "Valid Until" = +1 day
+  let validity = 'N/A';
+  if (data.date) {
+    const validUntil = new Date(data.date);
+    validUntil.setDate(validUntil.getDate() + 1);
+    validity = validUntil.toISOString().split('T')[0];
+  }
+  document.getElementById('gp-validity').innerText = validity;
+</script>
+</body>
+</html>
